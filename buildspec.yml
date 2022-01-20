@@ -15,9 +15,9 @@ phases:
          
   pre_build:
     commands:
-      - sudo apt-get update -y
-      - sudo apt-get install nginx -y
-      - sudo apt-get install php php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+      - apt update -y
+      - apt-get install nginx -y
+      - apt-get install php php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
       
   build:
     commands:
