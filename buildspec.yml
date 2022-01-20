@@ -1,0 +1,33 @@
+version: 0.2
+
+env:
+   parameter-store:
+           DB_Name: "/vai-wordpress-PS/databasename"
+           DB_User: "/vai-wordpress-PS/username"
+           DB_Password: "/vai-wordpress-PS/password"
+           DB_Host: "/vai-wordpress-PS/host"
+
+
+   
+
+               
+phases:
+         
+  pre_build:
+    commands:
+      - sudo apt-get update -y
+      - sudo apt-get install nginx -y
+      - sudo apt-get install php php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+      
+  build:
+    commands:
+      - sed -i 's/database_name_here/'$DB_Name'/' wp-config.php
+      - sed -i 's/username_here/'$DB_User'/' wp-config.php
+      - sed -i 's/password_here/'$DB_Password'/' wp-config.php
+      - sed -i 's/localhost/'$DB_Host'/' wp-config.php
+      - echo Build started on `date`
+      - echo Compiling the wordpress code
+      
+artifacts:
+        files:
+            - '**/*'
